@@ -22,5 +22,12 @@ public class Pet {
     private String description;
     private boolean specialDiet;
 
-
+    public Pet(String name, String type, String breed, int petOwnerId, String description, boolean specialDiet) {
+        this.name = name;
+        this.type = type;
+        this.breed = breed;
+        this.petOwnerId = petOwnerId;
+        this.description = description;
+        this.specialDiet = specialDiet;
+    }
 }

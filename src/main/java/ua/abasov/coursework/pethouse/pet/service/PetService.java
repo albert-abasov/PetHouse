@@ -19,4 +19,20 @@ public class PetService {
     public List<Pet> getPets() {
         return petRepository.getPets();
     }
+
+    public Pet getPet(int id) {
+        return petRepository.getPet(id);
+    }
+
+    public Pet createPet(Pet pet) {
+        return petRepository.createPet(pet);
+    }
+
+    public Pet updatePet(Pet pet, int id) {
+        return petRepository.updatePet(id, pet);
+    }
+
+    public void deletePet(int id) {
+        petRepository.deletePet(id);
+    }
 }

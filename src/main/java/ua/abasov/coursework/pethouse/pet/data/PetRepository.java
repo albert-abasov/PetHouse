@@ -29,17 +29,17 @@ public class PetRepository {
         return jdbcTemplate.queryForObject("SELECT * FROM pets WHERE id = ?", new PetRowMapper(), id);
     }
 
-    public Pet savePet(Pet pet) {
-        jdbcTemplate.update("INSERT INTO pets VALUES (?, ?, ?, ?, ?, ?, ?)",
-                pet.getId(), pet.getName(), pet.getType(), pet.getBreed(),
+    public Pet createPet(Pet pet) {
+        jdbcTemplate.update("INSERT INTO pets(name, type, breed, pet_owner_id, description, special_diet) " +
+                        "VALUES (?, ?, ?, ?, ?, ?)",
+                pet.getName(), pet.getType(), pet.getBreed(),
                 pet.getPetOwnerId(), pet.getDescription(), pet.isSpecialDiet());
-
         return pet;
     }
 
     public Pet updatePet(int id, Pet updatedPet) {
         jdbcTemplate.update("UPDATE pets SET name = ?, type = ?, breed = ?, " +
-                        "pet_owner_id = ?, description = ?, special_diet = ?",
+                        "pet_owner_id = ?, description = ?, special_diet = ? WHERE id = ?",
                 updatedPet.getName(), updatedPet.getType(), updatedPet.getBreed(),
                 updatedPet.getPetOwnerId(), updatedPet.getDescription(), updatedPet.isSpecialDiet(), id);
 
