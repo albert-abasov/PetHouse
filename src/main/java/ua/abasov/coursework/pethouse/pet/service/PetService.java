@@ -32,6 +32,16 @@ public class PetService {
         return petRepository.updatePet(id, pet);
     }
 
+    public Pet updatePartOfThePet(Pet newPet, int id) {
+        Pet pet = petRepository.getPet(id);
+
+        if (newPet.getName() == null) {
+            newPet.setName(pet.getName());
+        }
+
+        return petRepository.updatePet(id, newPet);
+    }
+
     public void deletePet(int id) {
         petRepository.deletePet(id);
     }
