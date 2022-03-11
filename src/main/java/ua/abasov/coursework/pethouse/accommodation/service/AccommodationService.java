@@ -28,8 +28,35 @@ public class AccommodationService {
         return accommodationRepository.createAccommodation(accommodation);
     }
 
-    public Accommodation updateAccommodation(int id, Accommodation newAccommodation) {
-        return accommodationRepository.updateAccommodation(id, newAccommodation);
+    public Accommodation updateAccommodation(int id, Accommodation updatedAccommodation) {
+        return accommodationRepository.updateAccommodation(id, updatedAccommodation);
+    }
+
+    public Accommodation updatePartOfAccommodation(int id, Accommodation updatedAccommodation) {
+        Accommodation accommodation = accommodationRepository.getAccommodationById(id);
+
+        if (updatedAccommodation.getCheckInDate() != null) {
+            accommodation.setCheckInDate(updatedAccommodation.getCheckInDate());
+        }
+
+        if (updatedAccommodation.getEvictionDate() != null) {
+            accommodation.setEvictionDate(updatedAccommodation.getEvictionDate());
+        }
+
+        if (updatedAccommodation.getCaredById() != 0) {
+            accommodation.setCaredById(updatedAccommodation.getCaredById());
+        }
+
+        if (updatedAccommodation.getPetId() != 0) {
+            accommodation.setPetId(updatedAccommodation.getPetId());
+        }
+
+        if (updatedAccommodation.getRoomId() != 0) {
+            accommodation.setRoomId(updatedAccommodation.getRoomId());
+        }
+
+        accommodationRepository.updateAccommodation(id, accommodation);
+        return accommodation;
     }
 
     public void deleteAccommodation(int id) {

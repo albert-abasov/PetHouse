@@ -36,13 +36,14 @@ public class AccommodationRepository {
         return accommodation;
     }
 
-    public Accommodation updateAccommodation(int id, Accommodation newAccommodation) {
+    public Accommodation updateAccommodation(int id, Accommodation updatedAccommodation) {
         jdbcTemplate.update("UPDATE accommodation SET checkInDate = ?, evictionDate = ?," +
                         "caredById = ?, petId = ?, roomId = ? WHERE id = ?",
-                newAccommodation.getCheckInDate(), newAccommodation.getEvictionDate(),
-                newAccommodation.getCaredById(), newAccommodation.getPetId(), newAccommodation.getRoomId(), id);
+                updatedAccommodation.getCheckInDate(), updatedAccommodation.getEvictionDate(),
+                updatedAccommodation.getCaredById(), updatedAccommodation.getPetId(),
+                updatedAccommodation.getRoomId(), id);
 
-        return newAccommodation;
+        return updatedAccommodation;
     }
 
     public void deleteAccommodation(int id) {

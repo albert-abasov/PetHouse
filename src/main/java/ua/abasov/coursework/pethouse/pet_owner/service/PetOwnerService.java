@@ -28,8 +28,31 @@ public class PetOwnerService {
         return petOwnerRepository.createPetOwner(petOwner);
     }
 
-    public PetOwner updatePetOwner(int id, PetOwner petOwner) {
-        return petOwnerRepository.updatePetOwner(id, petOwner);
+    public PetOwner updatePetOwner(int id, PetOwner updatedPetOwner) {
+        return petOwnerRepository.updatePetOwner(id, updatedPetOwner);
+    }
+
+    public PetOwner updatePartOfPetOwner(int id, PetOwner updatedPetOwner) {
+        PetOwner petOwner = petOwnerRepository.getPetOwner(id);
+
+        if (updatedPetOwner.getName() != null) {
+            petOwner.setName(updatedPetOwner.getName());
+        }
+
+        if (updatedPetOwner.getSurname() != null) {
+            petOwner.setSurname(updatedPetOwner.getSurname());
+        }
+
+        if (updatedPetOwner.getAddress() != null) {
+            petOwner.setAddress(updatedPetOwner.getAddress());
+        }
+
+        if (updatedPetOwner.getPhoneNumber() != null) {
+            petOwner.setPhoneNumber(updatedPetOwner.getPhoneNumber());
+        }
+
+        petOwnerRepository.updatePetOwner(id, petOwner);
+        return petOwner;
     }
 
     public void deletePetOwner(int id) {

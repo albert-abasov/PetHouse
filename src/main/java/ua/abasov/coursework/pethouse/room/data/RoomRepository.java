@@ -34,11 +34,11 @@ public class RoomRepository {
         return room;
     }
 
-    public Room updateRoom(int id, Room newRoom) {
+    public Room updateRoom(int id, Room updatedRoom) {
         jdbcTemplate.update("UPDATE rooms SET type = ?, price = ? WHERE id = ?",
-                newRoom.getType(), newRoom.getPrice(), id);
+                updatedRoom.getType(), updatedRoom.getPrice(), id);
 
-        return newRoom;
+        return updatedRoom;
     }
 
     public void deleteRoom(int id) {

@@ -31,18 +31,18 @@ public class EmployeeRepository {
         jdbcTemplate.update("INSERT INTO employees(name, surname, phoneNumber, address, qualifiction)" +
                         "VALUES(?, ?, ?, ?, ?)",
                 employee.getName(), employee.getSurname(), employee.getPhoneNumber(),
-                employee.getAddress(), employee.getQualification());
+                employee.getAddress(), employee.getQualification().name());
 
         return employee;
     }
 
-    public Employee updateEmployee(int id, Employee newEmployee) {
+    public Employee updateEmployee(int id, Employee updatedEmployee) {
         jdbcTemplate.update("UPDATE employees SET name = ?, surname = ?, phoneNumber = ?," +
                         "address = ?, qualification = ? WHERE id = ?",
-                newEmployee.getName(), newEmployee.getSurname(), newEmployee.getPhoneNumber(),
-                newEmployee.getAddress(), newEmployee.getQualification(), id);
+                updatedEmployee.getName(), updatedEmployee.getSurname(), updatedEmployee.getPhoneNumber(),
+                updatedEmployee.getAddress(), updatedEmployee.getQualification().name(), id);
 
-        return newEmployee;
+        return updatedEmployee;
     }
 
     public void deleteEmployee(int id) {

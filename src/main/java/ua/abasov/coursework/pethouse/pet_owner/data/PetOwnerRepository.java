@@ -35,8 +35,8 @@ public class PetOwnerRepository {
     }
 
     public PetOwner updatePetOwner(int id, PetOwner updatedPetOwner) {
-        jdbcTemplate.update("UPDATE pet_owners SET id = ?, name = ?, surname = ?," +
-                        "phone_number = ?, address = ?", updatedPetOwner.getId(), updatedPetOwner.getName(),
+        jdbcTemplate.update("UPDATE pet_owners SET name = ?, surname = ?," +
+                        "phone_number = ?, address = ?", updatedPetOwner.getName(),
                 updatedPetOwner.getSurname(), updatedPetOwner.getPhoneNumber(),
                 updatedPetOwner.getAddress(), id);
 

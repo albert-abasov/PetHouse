@@ -9,5 +9,5 @@ public class Employee {
     private String surname;
     private String phoneNumber;
     private String address;
-    private String qualification;
+    private EmployeeQualification qualification;
 }
