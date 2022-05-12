@@ -2,7 +2,9 @@ package ua.abasov.coursework.pethouse.user.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import ua.abasov.coursework.pethouse.user.dto.UserDto;
 import ua.abasov.coursework.pethouse.user.model.User;
+import ua.abasov.coursework.pethouse.user.model.UserRole;
 import ua.abasov.coursework.pethouse.user.service.UserService;
 
 import java.util.List;
@@ -28,7 +30,14 @@ public class UserController {
     }
 
     @PostMapping
-    public User createUser(@RequestBody User user) {
+    public User createUser(@RequestBody UserDto userDto) {
+        User user = new User();
+
+        user.setUsername(userDto.getUsername());
+        user.setPassword(userDto.getPassword());
+        user.setEmail(userDto.getEmail());
+        user.setRole(userDto.getRole());
+
         return userService.createUser(user);
     }
 

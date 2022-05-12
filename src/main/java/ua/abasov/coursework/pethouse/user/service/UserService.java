@@ -49,7 +49,7 @@ public class UserService implements UserDetailsService {
         User user = userRepository.getUser(id);
 
         if (updatedUser.getUsername() != null) {
-            user.setLogin(updatedUser.getUsername());
+            user.setUsername(updatedUser.getUsername());
         }
 
         if (updatedUser.getPassword() != null) {

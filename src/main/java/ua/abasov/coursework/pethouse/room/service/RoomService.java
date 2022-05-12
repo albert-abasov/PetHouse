@@ -1,7 +1,6 @@
 package ua.abasov.coursework.pethouse.room.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 import ua.abasov.coursework.pethouse.room.data.RoomRepository;
 import ua.abasov.coursework.pethouse.room.model.Room;
@@ -36,7 +35,7 @@ public class RoomService {
     public Room updatePartOfRoom(int id, Room updatedRoom) {
         Room room = roomRepository.getRoom(id);
 
-        if (updatedRoom.getPrice() != 0.0d) {
+        if (updatedRoom.getPrice() != 0) {
             room.setPrice(updatedRoom.getPrice());
         }
 

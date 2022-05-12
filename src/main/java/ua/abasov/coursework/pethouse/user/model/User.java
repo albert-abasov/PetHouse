@@ -8,13 +8,13 @@ import java.util.List;
 
 public class User implements UserDetails {
     private int id;
-    private String login;
+    private String username;
     private String password;
     private String email;
     private UserRole role;
 
-    public User(String login, String password, String email, UserRole role) {
-        this.login = login;
+    public User(String username, String password, String email, UserRole role) {
+        this.username = username;
         this.password = password;
         this.email = email;
         this.role = role;
@@ -35,7 +35,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return login;
+        return username;
     }
 
     public int getId() {
@@ -50,8 +50,8 @@ public class User implements UserDetails {
         this.id = id;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setPassword(String password) {

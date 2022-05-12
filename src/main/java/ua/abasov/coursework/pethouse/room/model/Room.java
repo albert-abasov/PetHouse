@@ -1,10 +1,11 @@
 package ua.abasov.coursework.pethouse.room.model;
 
 import lombok.Data;
+import ua.abasov.coursework.pethouse.pet.model.PetType;
 
 @Data
 public class Room {
     private int id;
-    private String type;
-    private double price;
+    private PetType type;
+    private int price;
 }

@@ -28,15 +28,15 @@ public class RoomRepository {
     }
 
     public Room createRoom(Room room) {
-        jdbcTemplate.update("INSERT INTO rooms(type, price) VALUES(?, ?)",
-                room.getType(), room.getPrice());
+        jdbcTemplate.update("INSERT INTO rooms(type, price) VALUES(cast(? as pet_type), ?)",
+                room.getType().name(), room.getPrice());
 
         return room;
     }
 
     public Room updateRoom(int id, Room updatedRoom) {
-        jdbcTemplate.update("UPDATE rooms SET type = ?, price = ? WHERE id = ?",
-                updatedRoom.getType(), updatedRoom.getPrice(), id);
+        jdbcTemplate.update("UPDATE rooms SET type = cast(? as pet_type), price = ? WHERE id = ?",
+                updatedRoom.getType().name(), updatedRoom.getPrice(), id);
 
         return updatedRoom;
     }

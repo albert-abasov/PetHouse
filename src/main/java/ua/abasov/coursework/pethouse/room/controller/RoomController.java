@@ -9,7 +9,7 @@ import ua.abasov.coursework.pethouse.room.service.RoomService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/rooms")
+@RequestMapping("api/rooms")
 public class RoomController {
     private RoomService roomService;
 
@@ -24,12 +24,13 @@ public class RoomController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN','EMPLOYEE')")
     public Room getRoom(@PathVariable int id) {
         return roomService.getRoom(id);
     }
 
     @PostMapping
-    @PreAuthorize("hasRole('EMPLOYEE') or hasRole('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','EMPLOYEE')")
     public Room createRoom(@RequestBody Room room) {
         return roomService.createRoom(room);
     }

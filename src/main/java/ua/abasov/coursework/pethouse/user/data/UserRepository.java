@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
 import ua.abasov.coursework.pethouse.user.model.User;
 
@@ -29,15 +30,16 @@ public class UserRepository {
 
     public User getUser(String name) {
         try {
-            return jdbcTemplate.queryForObject("SELECT * FROM users WHERE login = ?",
+            return jdbcTemplate.queryForObject("SELECT * FROM users WHERE username = ?",
                     new BeanPropertyRowMapper<>(User.class), name);
         } catch (EmptyResultDataAccessException exception) {
+//            throw new UsernameNotFoundException("User not found");
             return null;
         }
     }
 
     public User createUser(User user) {
-        jdbcTemplate.update("INSERT INTO users(login, password, email, role)" +
+        jdbcTemplate.update("INSERT INTO users(username, password, email, role)" +
                         "VALUES(?, ?, ?, cast(? as user_role))", user.getUsername(), user.getPassword(),
                 user.getEmail(), user.getAuthorities().stream().findFirst().get().getAuthority());
 
@@ -45,7 +47,7 @@ public class UserRepository {
     }
 
     public User updateUser(int id, User updatedUser) {
-        jdbcTemplate.update("UPDATE users SET login = ?, password = ?, email = ?, role = cast(? as user_role)" +
+        jdbcTemplate.update("UPDATE users SET username = ?, password = ?, email = ?, role = cast(? as user_role)" +
                         "WHERE  id = ?", updatedUser.getUsername(), updatedUser.getPassword(), updatedUser.getEmail(),
                 updatedUser.getAuthorities().stream().findFirst().get().getAuthority(), id);
 
